@@ -3,9 +3,8 @@ data "oci_secrets_secretbundle" "passwd_vault"{
   secret_id = var.kms_ocid
 }
 
-
 locals {
-    opc_new_password = base64decode(data.oci_secrets_secretbundle.bundle.oci_secrets_secretbundle{0}.content)
+    opc_new_password    = base64decode(data.oci_secrets_secretbundle.passwd_vault.secret_bundle_content.0.content)
 }
 
 resource "oci_core_vcn" "security_lab_vcn" {
@@ -140,7 +139,7 @@ resource "oci_core_instance" "security_lab_instance" {
   compartment_id      = var.compartment
   display_name        = "security-lab-instance"
   shape               = "VM.Standard2.8" # Choose your shape
-  opc_new_password    = base64decode(data.oci_secrets_secretbundle.passwd_vault.secret_bundle_content.0.content)
+  #opc_new_password    = base64decode(data.oci_secrets_secretbundle.passwd_vault.secret_bundle_content.0.content)
 
   create_vnic_details {
     subnet_id        = oci_core_subnet.security_lab_private_subnet.id
@@ -177,7 +176,7 @@ resource "oci_core_instance" "security_lab_instance" {
   provisioner "remote-exec" {
     inline = [
       # Change opc password
-      "echo 'opc:${opc_new_password}' | sudo chpasswd",
+      "echo 'opc:${local.opc_new_password}' | sudo chpasswd",
       "echo 'opc password updated successfully!"
     ]
   }
