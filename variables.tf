@@ -58,13 +58,11 @@ variable "source_id" {
   description = "Source id image of compute instance"
 }
 
-variable "secret_enable_auto_generation" {
-  enable_auto_generation = true
-  description            = "This will enable Terraform to automatically generate a secret" 
-}
 
 variable "pub_key" {}
 
 variable "pvt_key" {}
 
 variable "dir" {}
+
+variable "kms_ocid" {}
