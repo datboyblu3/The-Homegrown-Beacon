@@ -1,5 +1,9 @@
 # THB: The Homegrown Beacon
 
+<img width="1440" height="1134" alt="image" src="https://github.com/user-attachments/assets/3f2992f1-fff4-4f2a-ba2e-da142e32fbbd" />
+
+
+
 ## Overview
 This proof of concept (PoC) demonstrates the automation of red team infrastructure provisioning in Oracle Cloud Infrastructure (OCI) using Terraform and Ansible. The deployment facilitates the rapid creation of adversary-simulated environments by provisioning multiple compute instances with automated Sliver beacons.
 
